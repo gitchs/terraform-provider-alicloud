@@ -102,7 +102,7 @@ func resourceAliCloudPrivateLinkVpcEndpointZoneCreate(d *schema.ResourceData, me
 		request["ClientToken"] = buildClientToken(action)
 
 		if err != nil {
-			if IsExpectedErrors(err, []string{"EndpointLocked", "EndpointConnectionOperationDenied", "EndpointOperationDenied"}) || NeedRetry(err) {
+			if IsExpectedErrors(err, []string{"EndpointLocked", "EndpointConnectionOperationDenied", "EndpointOperationDenied", "ConcurrentCallNotSupported"}) || NeedRetry(err) {
 				wait()
 				return resource.RetryableError(err)
 			}
